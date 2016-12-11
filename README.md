@@ -1,5 +1,5 @@
 # Description
-A simple C++ API to translate normal string numbers into scientific notation type.
+A simple C++ API to translate normal string numbers into [Scientific Notation](https://www.wikipedia.org/wiki/Scientific_notation) type.
 
 It's in order to provide an example for the C++ beginners,and for those who haven't wrote a Git Repository as a documentional example.
 
