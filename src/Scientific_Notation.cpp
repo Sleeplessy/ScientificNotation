@@ -7,19 +7,19 @@
 #include<cctype>
 #include"Scientific_Notation.h"
 std::string Erro_Str;
-SN_NUMBER::SN_NUMBER(std::string SN_NUMBER,NTYPE SN_TYPE) {
+SN_NUMBER::SN_NUMBER(std::string SN_NUMBER, NTYPE SN_TYPE) {
 	//Constructor
-	this->SC_NUMBER = SN_NUMBER;
+	this->SN_NUMSTR = SN_NUMBER;
 	Erro_Str = "";
 	this->ERROR_HANDLER();
 	if (SN_NUMBER.find('.', 0) != std::string::npos) {
 		SN_DOTP = static_cast<int>(SN_NUMBER.find('.'));
-		this->SC_NUMBER.replace(SN_NUMBER.find('.'), 1, "");
+		this->SN_NUMSTR.replace(SN_NUMBER.find('.'), 1, "");
 	}
 	else {
 		this->SN_DOTP = -1;
 	}
-	SN_NDIGITS = this->SC_NUMBER.length();
+	SN_NDIGITS = this->SN_NUMSTR.length();
 	if (SN_TYPE == SN_NUMBER::NTYPE_EXP) {
 		SN_EXPSTR = "E";
 	}
@@ -28,7 +28,7 @@ SN_NUMBER::SN_NUMBER(std::string SN_NUMBER,NTYPE SN_TYPE) {
 	}
 }
 SN_NUMBER::SN_NUMBER() {
-	SC_NUMBER = "";
+	SN_NUMSTR = "";
 	SN_NDIGITS = NULL;
 	SN_DOTP = NULL;
 	SN_DIGIT = NULL;
@@ -53,12 +53,12 @@ int SN_NUMBER::DIGIT() {
 std::string SN_NUMBER::SN_Producer() {
 	DIGIT();
 	std::string TargetString;
-	TargetString += SC_NUMBER.substr(0, 1);
+	TargetString += SN_NUMSTR.substr(0, 1);
 	if (SN_DIGIT != 0)
 		TargetString += ".";
-	TargetString += SC_NUMBER.substr(1);
+	TargetString += SN_NUMSTR.substr(1);
 	if (SN_DIGIT != 0) {
-		TargetString += (SN_EXPSTR+std::to_string(SN_DIGIT));
+		TargetString += (SN_EXPSTR + std::to_string(SN_DIGIT));
 	}
 	return TargetString;
 }
@@ -66,18 +66,18 @@ void SN_NUMBER::ERROR_HANDLER() {
 	//Handles the error number src
 
 	//handle the signs position
-	if ((SC_NUMBER.find("-") != 0 && SC_NUMBER.find("-") != std::string::npos) ||
-		SC_NUMBER.find("+") != 0 && SC_NUMBER.find("+") != std::string::npos) {
+	if ((SN_NUMSTR.find("-") != 0 && SN_NUMSTR.find("-") != std::string::npos) ||
+		SN_NUMSTR.find("+") != 0 && SN_NUMSTR.find("+") != std::string::npos) {
 		Erro_Str = "Sign position error,or complex signs find.";
 	}
 
 	//handle the non-digit inputs
-	for (unsigned int i = 0; i < SC_NUMBER.size(); i++) {
-		if ((SC_NUMBER.at(i) < '0') || (SC_NUMBER.at(i) > '9')
-			|| SC_NUMBER.at(i) != '+'||SC_NUMBER.at(i) != '-'||SC_NUMBER.at(i) != '.')
-			Erro_Str = "Some of the inputs is not a digit.";
+	for (unsigned int i = 0; i < SN_NUMSTR.size(); i++) {
+		if (SN_NUMSTR.at(i) < '0' || SN_NUMSTR.at(i) > '9') {
+			if (SN_NUMSTR.at(i) != '+' || SN_NUMSTR.at(i) != '-' || SN_NUMSTR.at(i) != '.')
+				Erro_Str = "Some of the inputs is not a digit.";
+		}
+		if (Erro_Str != "") {
+			std::cerr << "Error: " << Erro_Str << std::endl;
+		}
 	}
-	if (Erro_Str != "") {
-		std::cerr << "Error: " << Erro_Str << std::endl;
-	}
-}
