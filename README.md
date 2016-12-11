@@ -7,6 +7,15 @@ It's in order to provide an example for the C++ beginners,and for those who have
 
 Clone the entire repository,and simplely include the **Scientific_Notation.h** & **Scientifc_Notation.cpp** files into your projects/source files.
 
+Use`SN_NUMBER foo(str)` to declare a scientific number class,use`foo.SN_Producer()` to produce a
+scientific notation digits string.
+
+## Example
+<pre>
+std::string NumStr= "1024.96";
+SN_NUMBER MyNumber(NumStr);
+std::cout << MyNumber.SN_Producer() << std::endl;
+</pre>
 
 # Support
 Get easy to create issues if you find a bug,pull requests are welcomed.
