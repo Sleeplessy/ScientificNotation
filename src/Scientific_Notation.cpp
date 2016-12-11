@@ -4,11 +4,13 @@
 //			4598-- > 4.598*10^3;
 #pragma once
 #include<iostream>
+#include<cctype>
 #include"Scientific_Notation.h"
 std::string Erro_Str;
 SN_NUMBER::SN_NUMBER(std::string SN_NUMBER,NTYPE SN_TYPE) {
 	//Constructor
 	this->SC_NUMBER = SN_NUMBER;
+	Erro_Str = "";
 	this->ERROR_HANDLER();
 	if (SN_NUMBER.find('.', 0) != std::string::npos) {
 		SN_DOTP = static_cast<int>(SN_NUMBER.find('.'));
@@ -61,5 +63,21 @@ std::string SN_NUMBER::SN_Producer() {
 	return TargetString;
 }
 void SN_NUMBER::ERROR_HANDLER() {
+	//Handles the error number src
 
+	//handle the signs position
+	if ((SC_NUMBER.find("-") != 0 && SC_NUMBER.find("-") != std::string::npos) ||
+		SC_NUMBER.find("+") != 0 && SC_NUMBER.find("+") != std::string::npos) {
+		Erro_Str = "Sign position error,or complex signs find.";
+	}
+
+	//handle the non-digit inputs
+	for (unsigned int i = 0; i < SC_NUMBER.size(); i++) {
+		if ((SC_NUMBER.at(i) < '0') || (SC_NUMBER.at(i) > '9')
+			|| SC_NUMBER.at(i) != '+'||SC_NUMBER.at(i) != '-'||SC_NUMBER.at(i) != '.')
+			Erro_Str = "Some of the inputs is not a digit.";
+	}
+	if (Erro_Str != "") {
+		std::cerr << "Error: " << Erro_Str << std::endl;
+	}
 }
