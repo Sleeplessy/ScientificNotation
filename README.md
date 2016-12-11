@@ -16,6 +16,8 @@ std::string NumStr= "1024.96";
 SN_NUMBER MyNumber(NumStr);
 std::cout << MyNumber.SN_Producer() << std::endl;
 </pre>
+ The Outputs would be:
+ `1.02496E3`
 
 # Support
 Get easy to create issues if you find a bug,pull requests are welcomed.
