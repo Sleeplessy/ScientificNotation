@@ -7,18 +7,41 @@ It's in order to provide an example for the C++ beginners,and for those who have
 
 Clone the entire repository,and simplely include the **Scientific_Notation.h** & **Scientifc_Notation.cpp** files into your projects/source files.
 
-Use`SN_NUMBER foo(str)` to declare a scientific number class,use`foo.SN_Producer()` to produce a
+Use `SN_NUMBER foo(str)` to declare a scientific number class,use `foo.SN_Producer()` to produce a
 scientific notation digits string.
 
 ## Example
 <pre>
-std::string NumStr= "1024.96";
-SN_NUMBER MyNumber(NumStr);
-std::cout << MyNumber.SN_Producer() << std::endl;
-</pre>
- The Outputs would be:
- `1.02496E3`
+std::string NumStr = "1024.96";
+SN_NUMBER MyNum1(NumStr), MyNum2("123456"),MyNum3("12a3445");
+std::cout << "MyNum1:" << MyNum1 << std::endl;
+std::cout << "MyNum2:" << MyNum2 <<"Number of digits: "<< MyNum2.NDIGIT() << std::endl;
+std::cout << "MyNum3:" << MyNum3 << std::endl;</pre>
 
+*The Outputs would be:*
+ <pre>Error info: Some of the inputs is not digit.
+MyNum1:1.02496E3
+MyNum2:1.23456E5 Number of digits:6
+MyNum3:1.2a3445E6</pre>
+
+
+# Functions
+Functions declared are listed by:
++ **SN_NUMBER(std:: string SN_NUMSTR, NTYPE type)**
+
+Construct a SN_NUMBER class using string,differs the explaination type using the SN_NUMBER::NTYPE_ vars;
+
++ **DOTP()**
+
+Rturns an interger that shows the dot's position in the former number.
+
++ **NDIGIT()**
+
+Returns an interger that shows the length of number.
+
++ **DIGIT()** 
+
+Returns an interger that shows the digits of former number's interger part.
 # Support
 Get easy to create issues if you find a bug,pull requests are welcomed.
 

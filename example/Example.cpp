@@ -2,11 +2,10 @@
 #include<iostream>
 #include"../src/Scientific_Notation.h"
 int main() {
-	std::string Inputs;
-	std::cout << "Please Input your numbers: ";
-	std::cin >> Inputs;
-	SN_NUMBER Number(Inputs, SN_NUMBER::NTYPE_TENS);		//Uses the "...*10^n" formats
-	std::cout << Number.SN_Producer();
-	std::cout << std::endl;
+	std::string NumStr = "1024.96";
+	SN_NUMBER MyNum1(NumStr), MyNum2("123456"),MyNum3("12a3445");
+	std::cout << "MyNum1:" << MyNum1 << std::endl;
+	std::cout << "MyNum2:" << MyNum2 <<"Number of digits: "<<MyNum2.NDIGIT() <<std::endl;
+	std::cout << "MyNum3:" << MyNum3 << std::endl;
 	return 0;
 }
