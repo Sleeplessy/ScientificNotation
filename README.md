@@ -13,16 +13,19 @@ scientific notation digits string.
 ## Example
 <pre>
 std::string NumStr = "1024.96";
-SN_NUMBER MyNum1(NumStr), MyNum2("123456"),MyNum3("12a3445");
+SN_NUMBER MyNum1(NumStr), MyNum2("123456");
 std::cout << "MyNum1:" << MyNum1 << std::endl;
 std::cout << "MyNum2:" << MyNum2 <<"Number of digits: "<< MyNum2.NDIGIT() << std::endl;
-std::cout << "MyNum3:" << MyNum3 << std::endl;</pre>
+SN_NUMBER MyNum3("12a3445");
+</pre>
 
 *The Outputs would be:*
- <pre>Error info: Some of the inputs is not digit.
+ <pre>
 MyNum1:1.02496E3
 MyNum2:1.23456E5 Number of digits:6
-MyNum3:1.2a3445E6</pre>
+Error info: Some of the inputs is not digit.
+</pre>
+
 
 
 # Functions
